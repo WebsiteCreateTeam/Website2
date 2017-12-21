@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 
 
 import java.util.Vector;
+
+import com.bean.Commodity_Info;
 import com.bean.GoodsInfo;
 
 public class GetIndexGoodsInfo extends HttpServlet 
@@ -24,13 +26,20 @@ public class GetIndexGoodsInfo extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+//		response.setCharacterEncoding("UTF-8") ;
+//		PrintWriter pw = response.getWriter() ;
+//		Vector<GoodsInfo> vec ;
+//		vec = DAOFactory.getIGoodsDAOInstance().getAllInfo() ;
+//		Gson son = new Gson() ;
+//		String s = son.toJson(vec) ;
+//		pw.println(s) ;
 		response.setCharacterEncoding("UTF-8") ;
 		PrintWriter pw = response.getWriter() ;
-		Vector<GoodsInfo> vec ;
-		vec = DAOFactory.getIGoodsDAOInstance().getAllInfo() ;
-		Gson son = new Gson() ;
-		String s = son.toJson(vec) ;
-		pw.println(s) ;
+		Vector<Commodity_Info> info = DAOFactory.getICommodity_InfoProxyInstance().getCommodityInfo() ;
+		Gson son = new Gson () ;
+		String str = son.toJson(info) ;
+		System.out.println(str) ; 
+		pw.println(str) ;
 	}
 
 }
